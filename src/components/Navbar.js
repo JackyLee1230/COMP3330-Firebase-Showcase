@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
 	const { user, logOut } = UserAuth();
+	const navigate = useNavigate();
 
 	const handleSignOut = async () => {
 		try {
@@ -25,9 +27,15 @@ const Navbar = () => {
 		>
 			<h1>Firebase ShowCase!!</h1>
 			{user?.displayName ? (
+				<button onClick={() => navigate("/account")}>Profile</button>
+			) : null}
+			{user?.displayName ? (
+				<button onClick={() => navigate("/chat")}>Chat Room</button>
+			) : null}
+			{user?.displayName ? (
 				<button onClick={handleSignOut}>Logout</button>
 			) : (
-				<Link to="/signin">Sign in</Link>
+				<button onClick={() => navigate("/signin")}>SignIn</button>
 			)}
 		</div>
 	);

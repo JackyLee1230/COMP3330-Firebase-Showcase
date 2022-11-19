@@ -6,8 +6,10 @@ import Signin from "./pages/sign-in";
 import { AuthContextProvider } from "./context/AuthContext";
 import SignedInOnly from "./components/SignedInOnly";
 import Navbar from "./components/Navbar";
+import Chat from "./pages/Chat";
 
 function App() {
+	document.title = "3330 Firebase Showcase";
 	return (
 		<BrowserRouter>
 			<AuthContextProvider>
@@ -20,6 +22,14 @@ function App() {
 						element={
 							<SignedInOnly>
 								<Account />
+							</SignedInOnly>
+						}
+					/>
+					<Route
+						path="/chat"
+						element={
+							<SignedInOnly>
+								<Chat />
 							</SignedInOnly>
 						}
 					/>
