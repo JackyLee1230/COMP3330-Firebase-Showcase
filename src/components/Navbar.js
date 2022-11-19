@@ -26,6 +26,7 @@ const Navbar = () => {
 			}}
 		>
 			<h1>Firebase ShowCase!!</h1>
+			<button onClick={() => navigate("/lecture")}>Lecture</button>
 			{user?.displayName ? (
 				<button onClick={() => navigate("/account")}>Profile</button>
 			) : null}
