@@ -36,7 +36,7 @@ function ChatRoom() {
 	const ref = useRef();
 	const messagesRef = collection(db, "messages");
 
-	const q = query(messagesRef, orderBy("createdAt"), limit(25));
+	const q = query(messagesRef, orderBy("createdAt"), limit(50));
 
 	const [messages] = useCollectionData(q, { idField: "id" });
 
@@ -87,13 +87,4 @@ function ChatRoom() {
 	);
 }
 
-function Chat() {
-	const { user } = UserAuth();
-	return (
-		<div>
-			<ChatRoom />
-		</div>
-	);
-}
-
-export default Chat;
+export default ChatRoom;
