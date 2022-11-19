@@ -8,6 +8,7 @@ import {
 	signInWithEmailAndPassword,
 	createUserWithEmailAndPassword,
 	updateProfile,
+	FacebookAuthProvider,
 } from "firebase/auth";
 import { auth, app } from "../firebase";
 
@@ -23,6 +24,16 @@ export const AuthContextProvider = ({ children }) => {
 
 	const googlePopupSignIn = () => {
 		const provider = new GoogleAuthProvider();
+		signInWithPopup(auth, provider);
+	};
+
+	const facebookRedirectSignIn = () => {
+		const provider = new FacebookAuthProvider();
+		signInWithRedirect(auth, provider);
+	};
+
+	const facebookPopupSignIn = () => {
+		const provider = new FacebookAuthProvider();
 		signInWithPopup(auth, provider);
 	};
 
@@ -66,6 +77,8 @@ export const AuthContextProvider = ({ children }) => {
 				googlePopupSignIn,
 				emailPasswordSignIn,
 				emailPasswordRegister,
+				facebookRedirectSignIn,
+				facebookPopupSignIn,
 				logOut,
 				user,
 			}}

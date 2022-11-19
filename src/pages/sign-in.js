@@ -17,6 +17,8 @@ const Signin = () => {
 		googlePopupSignIn,
 		emailPasswordSignIn,
 		emailPasswordRegister,
+		facebookRedirectSignIn,
+		facebookPopupSignIn,
 		user,
 	} = UserAuth();
 	const navigate = useNavigate();
@@ -37,6 +39,22 @@ const Signin = () => {
 	const handleGooglePopupSignIn = async () => {
 		try {
 			await googlePopupSignIn();
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const handleFacebookRedirectSignIn = async () => {
+		try {
+			await facebookRedirectSignIn();
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const handleFacebookPopupSignIn = async () => {
+		try {
+			await facebookPopupSignIn();
 		} catch (error) {
 			console.log(error);
 		}
@@ -146,7 +164,23 @@ const Signin = () => {
 				}}
 			>
 				Redirect signin: <GoogleButton onClick={handleGoogleRedirectSignIn} />
-				Popu Signin: <GoogleButton onClick={handleGooglePopupSignIn} />
+				Popup Signin: <GoogleButton onClick={handleGooglePopupSignIn} />
+			</div>
+			<div
+				style={{
+					display: "flex",
+					flexDirection: "row",
+					paddingHorizontal: "30%",
+					alignItems: "center",
+				}}
+			>
+				<Button variant="contained" onClick={handleFacebookRedirectSignIn}>
+					FB Redirect signin
+				</Button>
+
+				<Button variant="contained" onClick={handleFacebookPopupSignIn}>
+					FB Popup Signin:
+				</Button>
 			</div>
 		</div>
 	);
