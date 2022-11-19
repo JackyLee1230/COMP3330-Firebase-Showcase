@@ -7,6 +7,7 @@ import { AuthContextProvider } from "./context/AuthContext";
 import SignedInOnly from "./components/SignedInOnly";
 import Navbar from "./components/Navbar";
 import Chat from "./pages/Chat";
+import Lecture from "./pages/lecture";
 
 function App() {
 	document.title = "3330 Firebase Showcase";
@@ -17,6 +18,7 @@ function App() {
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/signin" element={<Signin />} />
+					<Route path="/lecture" element={<Lecture />} />
 					<Route
 						path="/account"
 						element={
