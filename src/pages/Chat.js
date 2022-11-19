@@ -26,7 +26,12 @@ function Msg(props) {
 					alt=""
 					src={photoURL || `https://ui-avatars.com/api/?name=${name}`}
 				/>
-				<p className={`selfsent`}>{text}</p>
+				<div>
+					<p className={`selfsent`}>
+						<strong>{name}</strong>:<br />
+						{text}
+					</p>
+				</div>
 			</div>
 		</>
 	);
@@ -63,7 +68,7 @@ function ChatRoom() {
 
 	return (
 		<>
-			<div>
+			<div style={{ marginBottom: "5%" }}>
 				{messages &&
 					messages.map((msg) => (
 						<Msg key={msg.uid + String(msg.createdAt)} message={msg} />
@@ -78,7 +83,6 @@ function ChatRoom() {
 					onChange={(e) => setInputValue(e.target.value)}
 					placeholder="Express Yourself!"
 				/>
-
 				<button type="submit" disabled={!inputValue}>
 					Send
 				</button>
