@@ -70,9 +70,10 @@ function Lecture() {
 			<div
 				style={{
 					display: "flex",
-					flexDirection: "row",
-					alignItems: "center",
+					flexDirection: "column",
+					alignItems: "flex-start",
 					paddingBottom: "5%",
+					gap: "2vw",
 				}}
 			>
 				<TextField
@@ -81,18 +82,28 @@ function Lecture() {
 						setKeyword(e.target.value);
 					}}
 				/>
-				<Button variant="contained" onClick={loadLectures}>
-					Search
-				</Button>
-				<Button variant="contained" onClick={loadAllLectures}>
-					Search All(Without Keyword)
-				</Button>
+				<div
+					style={{
+						display: "flex",
+						flexDirection: "row",
+						gap: "1vw",
+					}}
+				>
+					<Button variant="contained" onClick={loadLectures}>
+						Search
+					</Button>
+					<Button variant="contained" onClick={loadAllLectures}>
+						Search All(Without Keyword)
+					</Button>
+				</div>
 			</div>
 			<div
 				style={{
 					display: "flex",
-					flexDirection: "row",
-					alignItems: "center",
+					flexDirection: "column",
+					alignItems: "flex-start",
+					paddingBottom: "5%",
+					gap: "2vw",
 				}}
 			>
 				<TextField
@@ -101,11 +112,26 @@ function Lecture() {
 						setID(e.target.value);
 					}}
 				/>
-				<Button variant="contained" onClick={loadLectureWithID}>
-					Search With ID
-				</Button>
+				<div
+					style={{
+						display: "flex",
+						flexDirection: "row",
+						gap: "1vw",
+					}}
+				>
+					<Button variant="contained" onClick={loadLectureWithID}>
+						Search With ID
+					</Button>
+				</div>
 			</div>
 			<div>
+				<h2> Results: </h2>
+				{(!results || results?.length === 0) && (
+					<h4>
+						No Result
+					</h4>
+				)}
+
 				{results.map((lecture) => {
 					return (
 						<div key={lecture.ID}>

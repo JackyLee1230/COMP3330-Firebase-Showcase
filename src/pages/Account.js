@@ -44,7 +44,7 @@ const Account = () => {
 	};
 
 	return (
-		<div style={{ width: "100%" }}>
+		<div style={{ width: "100vw", display: "flex", flexDirection: "column"}}>
 			<Modal
 				aria-labelledby="transition-modal-title"
 				aria-describedby="transition-modal-description"
@@ -85,25 +85,27 @@ const Account = () => {
 				</Fade>
 			</Modal>
 			<h1>Account</h1>
-			<div style={{ color: "black" }}>
-				<p>Welcome, {user?.displayName}</p>
-				<p>Email: {user?.email}</p>
-				<p>Photo: {user?.photoURL}</p>
+			<div style={{ color: "black", fontSize: 20, marginBottom: 48 }}>
+				<p>Welcome, <b>{user?.displayName}</b></p>
+				<p>Email: <b>{user?.email}</b></p>
+				<p>Photo: <b>{user?.photoURL}</b></p>
 				<p>
 					Sign-In Provider:{" "}
-					{(user &&
+					<b>{(user &&
 						user?.providerData &&
 						user?.providerData[0] &&
 						user?.providerData[0]?.providerId) ??
 						0}
+					</b>
 				</p>
 				<p>
 					Provider-specific UID:{" "}
-					{(user &&
+					<b>{(user &&
 						user?.providerData &&
 						user?.providerData[0] &&
 						user?.providerData[0]?.uid) ??
 						0}
+					</b>
 				</p>
 			</div>
 			<button onClick={handleOpen} className="border py-2 px-5 mt-10">

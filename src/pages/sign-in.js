@@ -67,47 +67,71 @@ const Signin = () => {
 	}, [user]);
 
 	return (
-		<div>
+		<div
+			style={{
+				width: "100%",
+				display: "flex",
+				flexDirection: "column",
+				gap: "10vh",
+				padding: "1.5% 3%",
+			}}
+		>
+			<h1>
+				Sign In Methods Demonstrations
+			</h1>
 			<div
 				style={{
+					width: "100%",
 					display: "flex",
 					flexDirection: "row",
 					gap: "20%",
+					padding: "1.5% 3%",
 				}}
 			>
-				<div>
-					<h1>Register</h1>
-					<FormControl>
-						<TextField
-							variant="filled"
-							label="Name"
-							onChange={(e) => setName(e.target.value)}
-						/>
-						<TextField
-							variant="filled"
-							label="Email"
-							type="email"
-							onChange={(e) => setEmail(e.target.value)}
-						/>
-						<TextField
-							variant="filled"
-							label="Password"
-							type="password"
-							onChange={(e) => setPassword(e.target.value)}
-							// endAdornment={
-							// 	<InputAdornment position="end">
-							// 		<IconButton
-							// 			aria-label="toggle password visibility"
-							// 			onClick={() => setShowPassword((prev) => !prev)}
-							// 			onMouseDown={(e) => e.preventDefault()}
-							// 			edge="end"
-							// 		>
-							// 			{showPassword ? <EyeOff /> : <Eye />}
-							// 		</IconButton>
-							// 	</InputAdornment>
-							// }
-						/>
-					</FormControl>
+				<div
+					style={{
+						display: "flex",
+						flexDirection: "column",
+						borderRadius: 16,
+						border: "3px solid blue", 
+						padding: "1.5% 3%",
+						gap: "20px",
+					}}
+				>
+					<div>
+						<h1>Register</h1>
+						<FormControl>
+							<TextField
+								variant="filled"
+								label="Name"
+								onChange={(e) => setName(e.target.value)}
+							/>
+							<TextField
+								variant="filled"
+								label="Email"
+								type="email"
+								onChange={(e) => setEmail(e.target.value)}
+							/>
+							<TextField
+								variant="filled"
+								label="Password"
+								type="password"
+								onChange={(e) => setPassword(e.target.value)}
+								// endAdornment={
+								// 	<InputAdornment position="end">
+								// 		<IconButton
+								// 			aria-label="toggle password visibility"
+								// 			onClick={() => setShowPassword((prev) => !prev)}
+								// 			onMouseDown={(e) => e.preventDefault()}
+								// 			edge="end"
+								// 		>
+								// 			{showPassword ? <EyeOff /> : <Eye />}
+								// 		</IconButton>
+								// 	</InputAdornment>
+								// }
+							/>
+						</FormControl>
+					</div>
 					<Button
 						variant="contained"
 						onClick={async () => {
@@ -117,34 +141,45 @@ const Signin = () => {
 						Register Account
 					</Button>
 				</div>
-				<div>
-					<h1>Sign in</h1>
-					<FormControl>
-						<TextField
-							variant="filled"
-							label="Email"
-							type="email"
-							onChange={(e) => setEmail(e.target.value)}
-						/>
-						<TextField
-							variant="filled"
-							label="Password"
-							type="password"
-							onChange={(e) => setPassword(e.target.value)}
-							// endAdornment={
-							// 	<InputAdornment position="end">
-							// 		<IconButton
-							// 			aria-label="toggle password visibility"
-							// 			onClick={() => setShowPassword((prev) => !prev)}
-							// 			onMouseDown={(e) => e.preventDefault()}
-							// 			edge="end"
-							// 		>
-							// 			{showPassword ? <EyeOff /> : <Eye />}
-							// 		</IconButton>
-							// 	</InputAdornment>
-							// }
-						/>
-					</FormControl>
+				<div
+					style={{
+						display: "flex",
+						flexDirection: "column",
+						borderRadius: 16,
+						border: "3px solid blue", 
+						padding: "1.5% 3%",
+						gap: "20px",
+					}}
+				>
+					<div>
+						<h1>Sign in</h1>
+						<FormControl>
+							<TextField
+								variant="filled"
+								label="Email"
+								type="email"
+								onChange={(e) => setEmail(e.target.value)}
+							/>
+							<TextField
+								variant="filled"
+								label="Password"
+								type="password"
+								onChange={(e) => setPassword(e.target.value)}
+								// endAdornment={
+								// 	<InputAdornment position="end">
+								// 		<IconButton
+								// 			aria-label="toggle password visibility"
+								// 			onClick={() => setShowPassword((prev) => !prev)}
+								// 			onMouseDown={(e) => e.preventDefault()}
+								// 			edge="end"
+								// 		>
+								// 			{showPassword ? <EyeOff /> : <Eye />}
+								// 		</IconButton>
+								// 	</InputAdornment>
+								// }
+							/>
+						</FormControl>
+					</div>
 					<Button
 						variant="contained"
 						onClick={() => {
@@ -161,25 +196,45 @@ const Signin = () => {
 					flexDirection: "row",
 					paddingHorizontal: "30%",
 					alignItems: "center",
+					gap: "10%",
 				}}
 			>
-				Redirect signin: <GoogleButton onClick={handleGoogleRedirectSignIn} />
-				Popup Signin: <GoogleButton onClick={handleGooglePopupSignIn} />
+				<div
+					style={{
+						display: "flex",
+						flexDirection: "row",
+						alignItems: "center",
+						gap: "1%",
+					}}
+				>
+					<h4 style={{whiteSpace: "nowrap"}}>Redirect signin:</h4> <GoogleButton onClick={handleGoogleRedirectSignIn} />
+				</div>
+				<div
+					style={{
+						display: "flex",
+						flexDirection: "row",
+						alignItems: "center",
+						gap: "1%",
+					}}
+				>
+					<h4 style={{whiteSpace: "nowrap"}}>Popup Signin:</h4> <GoogleButton onClick={handleGooglePopupSignIn} />
+				</div>
 			</div>
 			<div
 				style={{
 					display: "flex",
 					flexDirection: "row",
-					paddingHorizontal: "30%",
+					padding: "3%",
 					alignItems: "center",
+					gap: "3%",
 				}}
 			>
 				<Button variant="contained" onClick={handleFacebookRedirectSignIn}>
-					FB Redirect signin
+					FacbBook Redirect Signin
 				</Button>
 
 				<Button variant="contained" onClick={handleFacebookPopupSignIn}>
-					FB Popup Signin:
+					FacbBook Popup Signin
 				</Button>
 			</div>
 		</div>
