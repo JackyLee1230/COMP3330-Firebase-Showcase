@@ -4,6 +4,22 @@ admin.initializeApp();
 
 const db = admin.firestore();
 
+// This will listen to Authentication (User Register) / Use a new Social Sign-in
+// the callback function take the user object as a parameter, we can use it to get the user's data
+exports.authRegister = functions.auth.user().onCreate((user) => {
+	// This will create a document with user.UID as identifier in the "users" Collection with the user's email as a field
+	return db.collection("users").doc(user.uid).set({
+		email: user.email,
+	});
+});
+
+// This will listen to Authentication (User Account Deletion
+// the callback function take the user object as a parameter, we can use it to get the user's data
+exports.authDelete = functions.auth.user().onDelete((user) => {
+	// This will delete the document with user.UID as identifier in the "users" Collection
+	return db.collection("users").doc(user.uid).delete();
+});
+
 // This will listen to creation of Document in the "messages" Collection and create a new document in the Test Collection
 exports.onMessageCreate = functions.firestore
 	.document("message/{messageID}")
@@ -31,3 +47,21 @@ exports.onLectureDelete = functions.firestore
 
 		await Promise.all(deletePromises);
 	});
+
+// Since Firebase Cloud Funtions also provide a REST API, we need to protect it to prevent abuse of the endpoint
+exports.HTTPRequest = functions.https.onCall((data, context) => {
+	if (!context.auth) {
+		// https://firebase.google.com/docs/reference/node/firebase.functions#functionserrorcode
+		// see this documentation for list of error codes
+		throw new functions.https.HttpsError(
+			"unauthenticated",
+			"Only Callable By Authenticated User"
+		);
+	}
+	if (!data.text) {
+		throw new functions.https.HttpsError(
+			"invalid-argument",
+			"Missing Argument"
+		);
+	}
+});
