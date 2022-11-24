@@ -83,7 +83,6 @@ const Signin = () => {
 					display: "flex",
 					flexDirection: "row",
 					gap: "20%",
-					padding: "1.5% 3%",
 				}}
 			>
 				<div
@@ -169,7 +168,7 @@ const Signin = () => {
 					display: "flex",
 					flexDirection: "row",
 					gap: "100px",
-					justifyContent: "center",
+					marginTop: 36,
 				}}
 			>
 				<div
@@ -182,28 +181,33 @@ const Signin = () => {
 						borderRadius: 16,
 						border: "3px solid blue",
 						padding: "1.5% 3%",
+						width: 420,
 					}}
 				>
 					<div
 						style={{
+							width: "100%",
 							display: "flex",
 							flexDirection: "row",
 							alignItems: "center",
+							justifyContent: "space-between",
 							gap: "1%",
 						}}
 					>
-						<h4 style={{ whiteSpace: "nowrap" }}>Redirect signin:</h4>{" "}
+						<h4 style={{ whiteSpace: "nowrap", alignSelf: "flex-start" }}>Google Redirect signin:</h4>{" "}
 						<GoogleButton onClick={handleGoogleRedirectSignIn} />
 					</div>
 					<div
 						style={{
+							width: "100%",
 							display: "flex",
 							flexDirection: "row",
 							alignItems: "center",
+							justifyContent: "space-between",
 							gap: "1%",
 						}}
 					>
-						<h4 style={{ whiteSpace: "nowrap" }}>Popup Signin:</h4>{" "}
+						<h4 style={{ whiteSpace: "nowrap", alignSelf: "flex-start" }}>Google Popup Signin:</h4>{" "}
 						<GoogleButton onClick={handleGooglePopupSignIn} />
 					</div>
 				</div>
@@ -213,16 +217,25 @@ const Signin = () => {
 						style={{
 							display: "flex",
 							flexDirection: "column",
-							padding: "3%",
 							alignItems: "center",
-							gap: "3%",
+							gap: "10%",
 							borderRadius: 16,
 							border: "3px solid blue",
 							padding: "1.5% 3%",
+							width: 450,
 						}}
 					>
-						<div style={{ display: "flex", flexDirection: "row" }}>
-							FB Redirect Signin
+						<div
+							style={{
+								width: "100%",
+								display: "flex",
+								flexDirection: "row",
+								alignItems: "center",
+								justifyContent: "space-between",
+								gap: "1%",
+							}}
+						>
+							<h4 style={{ whiteSpace: "nowrap", alignSelf: "flex-start" }}>FaceBook Redirect Signin:</h4>
 							<Button
 								variant="contained"
 								onClick={handleFacebookRedirectSignIn}
@@ -230,8 +243,17 @@ const Signin = () => {
 								FaceBook Redirect Signin
 							</Button>
 						</div>
-						<div style={{ display: "flex", flexDirection: "row" }}>
-							FB Popup Signin
+						<div
+							style={{
+								width: "100%",
+								display: "flex",
+								flexDirection: "row",
+								alignItems: "center",
+								justifyContent: "space-between",
+								gap: "1%",
+							}}
+						>
+							<h4 style={{ whiteSpace: "nowrap", alignSelf: "flex-start" }}>FaceBook Popup Signin:</h4>
 							<Button variant="contained" onClick={handleFacebookPopupSignIn}>
 								FaceBook Popup Signin
 							</Button>

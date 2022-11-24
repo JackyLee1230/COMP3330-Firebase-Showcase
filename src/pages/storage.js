@@ -103,19 +103,53 @@ function Storage() {
 		<>
 			{auth?.currentUser?.displayName ? (
 				<div>
-					<input type="file" onChange={handleChange} />
-					<button onClick={handleUpload}>Upload to Firebase</button>
-					{progress !== 0 || !isNaN(progress) ? (
-						<div style={{ display: "flex", flexDirection: "row", gap: "5%" }}>
-							<CircularProgress variant="determinate" value={progress} />
-							<p>{progress} "% done"</p>
+					<div
+						style={{
+							margin: "32px 0px 0px 0px",
+							display: "flex",
+							flexDirection: "row",
+						}}
+					>
+						<input type="file" onChange={handleChange} style={{width: "98.5%"}} />
+						<button 
+							onClick={handleUpload}
+						>
+							Upload to Firebase
+						</button>
+					</div>
+					{progress !== 0 && !isNaN(progress) ? (
+						<div
+							style={{
+								padding: "1% 3%",
+							}}
+						>
+							<h2> Uploading Progress: </h2>
+							<div style={{ display: "flex", flexDirection: "row", gap: "5%" }}>
+								<CircularProgress variant="determinate" size="4rem" value={progress} />
+								<h4>{progress} "% done"</h4>
+							</div>
 						</div>
 					) : null}
 					{link && (
-						<a href={link} style={{ whiteSpace: "pre-wrap" }}>
-							Link To The File You Uploaded{"\n"}
-						</a>
+						<div
+							style={{
+								padding: "1% 3%",
+							}}
+						>
+							<a href={link} style={{ whiteSpace: "pre-wrap" }}>
+								Link To The File You Uploaded{"\n"}
+							</a>
+						</div>
 					)}
+
+
+					{allLinks && !isLoading &&
+						<h2 style={{
+								padding: "0% 3%",
+						}}>
+							List of Uploaded Items: 
+						</h2>
+					}
 
 					{allLinks &&
 						!isLoading &&
@@ -123,24 +157,30 @@ function Storage() {
 							<div
 								key={link}
 								style={{
+									marginLeft: "2%",
 									display: "flex",
 									flexDirection: "row",
 									borderRadius: 16,
 									border: "3px solid blue",
 									padding: "1% 1%",
-									marginBottom: "1%",
+									marginBottom: "2%",
 									justifyContent: "space-between",
 									width: "70%",
 								}}
 							>
 								<div style={{ display: "flex", flexDirection: "column" }}>
-									{link.name.replace("web/", "")} [Uploaded By{" "}
-									{link.displayName}]:
+									<b>{link.name.replace("web/", "")} [Uploaded By{" "}
+									{link.displayName}]:</b>
 									<a href={link}>{link.url}</a>
 								</div>
 
 								<button
-									style={{ width: "10%" }}
+									style={{ 
+										display: "flex",
+										width: "10%" ,
+										alignSelf: "center",
+										justifyContent: "center",
+									}}
 									onClick={() => {
 										handleDelete(link.name);
 									}}
