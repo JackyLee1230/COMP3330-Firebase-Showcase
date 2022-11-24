@@ -110,12 +110,21 @@ function Storage() {
 							flexDirection: "row",
 						}}
 					>
-						<input type="file" onChange={handleChange} style={{width: "98.5%"}} />
-						<button 
-							onClick={handleUpload}
+						<input
+							id="fileUpload"
+							type="file"
+							onChange={handleChange}
+							style={{ width: "98.5%" }}
+						/>
+						<button
+							onClick={() => {
+								setFile();
+								document.getElementById("fileUpload").value = null;
+							}}
 						>
-							Upload to Firebase
+							Remove File
 						</button>
+						<button onClick={handleUpload}>Upload to Firebase</button>
 					</div>
 					{progress !== 0 && !isNaN(progress) ? (
 						<div
@@ -125,7 +134,11 @@ function Storage() {
 						>
 							<h2> Uploading Progress: </h2>
 							<div style={{ display: "flex", flexDirection: "row", gap: "5%" }}>
-								<CircularProgress variant="determinate" size="4rem" value={progress} />
+								<CircularProgress
+									variant="determinate"
+									size="4rem"
+									value={progress}
+								/>
 								<h4>{progress} "% done"</h4>
 							</div>
 						</div>
@@ -142,14 +155,15 @@ function Storage() {
 						</div>
 					)}
 
-
-					{allLinks && !isLoading &&
-						<h2 style={{
+					{allLinks && !isLoading && (
+						<h2
+							style={{
 								padding: "0% 3%",
-						}}>
-							List of Uploaded Items: 
+							}}
+						>
+							List of Uploaded Items:
 						</h2>
-					}
+					)}
 
 					{allLinks &&
 						!isLoading &&
@@ -169,15 +183,17 @@ function Storage() {
 								}}
 							>
 								<div style={{ display: "flex", flexDirection: "column" }}>
-									<b>{link.name.replace("web/", "")} [Uploaded By{" "}
-									{link.displayName}]:</b>
+									<b>
+										{link.name.replace("web/", "")} [Uploaded By{" "}
+										{link.displayName}]:
+									</b>
 									<a href={link}>{link.url}</a>
 								</div>
 
 								<button
-									style={{ 
+									style={{
 										display: "flex",
-										width: "10%" ,
+										width: "10%",
 										alignSelf: "center",
 										justifyContent: "center",
 									}}
