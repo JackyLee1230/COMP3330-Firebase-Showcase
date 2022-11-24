@@ -34,6 +34,7 @@ function Storage() {
 					let name = item._location.path;
 					let displayName;
 					getMetadata(ref(storage, `web/${item.name}`)).then((metadata) => {
+						console.log(item);
 						displayName = metadata.customMetadata.displayName ?? null;
 						setAllLinks((prev) => [...prev, { name, url, displayName }]);
 					});
@@ -99,53 +100,60 @@ function Storage() {
 	};
 
 	return (
-		<div>
-			<input type="file" onChange={handleChange} />
-			<button onClick={handleUpload}>Upload to Firebase</button>
-			{progress !== 0 || !isNaN(progress) ? (
-				<div style={{ display: "flex", flexDirection: "row", gap: "5%" }}>
-					<CircularProgress variant="determinate" value={progress} />
-					<p>{progress} "% done"</p>
-				</div>
-			) : null}
-			{link && (
-				<a href={link} style={{ whiteSpace: "pre-wrap" }}>
-					Link To The File You Uploaded{"\n"}
-				</a>
-			)}
-
-			{allLinks &&
-				!isLoading &&
-				allLinks.map((link) => (
-					<div
-						style={{
-							display: "flex",
-							flexDirection: "row",
-							borderRadius: 16,
-							border: "3px solid blue",
-							padding: "1% 1%",
-							marginBottom: "1%",
-							justifyContent: "space-between",
-							width: "70%",
-						}}
-					>
-						{console.log(link)}
-						<div style={{ display: "flex", flexDirection: "column" }}>
-							{link.name.replace("web/", "")} [Uploaded By {link.displayName}]:
-							<a href={link}>{link.url}</a>
+		<>
+			{auth?.currentUser?.displayName ? (
+				<div>
+					<input type="file" onChange={handleChange} />
+					<button onClick={handleUpload}>Upload to Firebase</button>
+					{progress !== 0 || !isNaN(progress) ? (
+						<div style={{ display: "flex", flexDirection: "row", gap: "5%" }}>
+							<CircularProgress variant="determinate" value={progress} />
+							<p>{progress} "% done"</p>
 						</div>
+					) : null}
+					{link && (
+						<a href={link} style={{ whiteSpace: "pre-wrap" }}>
+							Link To The File You Uploaded{"\n"}
+						</a>
+					)}
 
-						<button
-							style={{ width: "10%" }}
-							onClick={() => {
-								handleDelete(link.name);
-							}}
-						>
-							Delete
-						</button>
-					</div>
-				))}
-		</div>
+					{allLinks &&
+						!isLoading &&
+						allLinks.map((link) => (
+							<div
+								key={link}
+								style={{
+									display: "flex",
+									flexDirection: "row",
+									borderRadius: 16,
+									border: "3px solid blue",
+									padding: "1% 1%",
+									marginBottom: "1%",
+									justifyContent: "space-between",
+									width: "70%",
+								}}
+							>
+								<div style={{ display: "flex", flexDirection: "column" }}>
+									{link.name.replace("web/", "")} [Uploaded By{" "}
+									{link.displayName}]:
+									<a href={link}>{link.url}</a>
+								</div>
+
+								<button
+									style={{ width: "10%" }}
+									onClick={() => {
+										handleDelete(link.name);
+									}}
+								>
+									Delete
+								</button>
+							</div>
+						))}
+				</div>
+			) : (
+				<a>Storage Access is only allowed for Authenticated User</a>
+			)}
+		</>
 	);
 }
 

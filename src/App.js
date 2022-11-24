@@ -36,14 +36,7 @@ function App() {
 							</SignedInOnly>
 						}
 					/>
-					<Route
-						path="/storage"
-						element={
-							<SignedInOnly>
-								<Storage />
-							</SignedInOnly>
-						}
-					/>
+					<Route path="/storage" element={<Storage />} />
 				</Routes>
 			</AuthContextProvider>
 		</BrowserRouter>

@@ -30,9 +30,7 @@ const Navbar = () => {
 			{user?.displayName ? (
 				<button onClick={() => navigate("/account")}>Profile</button>
 			) : null}
-			{user?.displayName ? (
-				<button onClick={() => navigate("/storage")}>Storage</button>
-			) : null}
+			<button onClick={() => navigate("/storage")}>Storage</button>
 			{user?.displayName ? (
 				<button onClick={() => navigate("/chat")}>Chat Room</button>
 			) : null}
