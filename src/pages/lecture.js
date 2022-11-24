@@ -70,6 +70,16 @@ function Lecture() {
 			<div
 				style={{
 					display: "flex",
+					flexDirection: "row",
+					justifyContent: "space-between",
+				}}
+			>
+				<h2>This is a showcase of Firebase's FireStore</h2>
+			</div>
+
+			<div
+				style={{
+					display: "flex",
 					flexDirection: "column",
 					alignItems: "flex-start",
 					paddingBottom: "5%",
@@ -126,11 +136,7 @@ function Lecture() {
 			</div>
 			<div>
 				<h2> Results: </h2>
-				{(!results || results?.length === 0) && (
-					<h4>
-						No Result
-					</h4>
-				)}
+				{(!results || results?.length === 0) && <h4>No Result</h4>}
 
 				{results.map((lecture) => {
 					return (

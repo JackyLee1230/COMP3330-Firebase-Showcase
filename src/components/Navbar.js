@@ -25,10 +25,13 @@ const Navbar = () => {
 				justifyContent: "space-between",
 			}}
 		>
-			<h1>Firebase ShowCase!!</h1>
+			<h1>COMP3330 Group 10 HKU-GO: Firebase Showcase</h1>
 			<button onClick={() => navigate("/lecture")}>Lecture</button>
 			{user?.displayName ? (
 				<button onClick={() => navigate("/account")}>Profile</button>
+			) : null}
+			{user?.displayName ? (
+				<button onClick={() => navigate("/storage")}>Storage</button>
 			) : null}
 			{user?.displayName ? (
 				<button onClick={() => navigate("/chat")}>Chat Room</button>

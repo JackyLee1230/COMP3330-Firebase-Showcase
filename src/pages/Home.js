@@ -10,6 +10,8 @@ const Home = () => {
 	return (
 		<div>
 			<h1>Home Page</h1>
+			Please Login to test the Authentication feature And Access the Cloud
+			Database, Storage, Profile and a Chatroom Built only using Firestore
 		</div>
 	);
 };

@@ -76,9 +76,7 @@ const Signin = () => {
 				padding: "1.5% 3%",
 			}}
 		>
-			<h1>
-				Sign In Methods Demonstrations
-			</h1>
+			<h1>Sign In Methods Demonstrations</h1>
 			<div
 				style={{
 					width: "100%",
@@ -93,7 +91,7 @@ const Signin = () => {
 						display: "flex",
 						flexDirection: "column",
 						borderRadius: 16,
-						border: "3px solid blue", 
+						border: "3px solid blue",
 						padding: "1.5% 3%",
 						gap: "20px",
 					}}
@@ -117,18 +115,6 @@ const Signin = () => {
 								label="Password"
 								type="password"
 								onChange={(e) => setPassword(e.target.value)}
-								// endAdornment={
-								// 	<InputAdornment position="end">
-								// 		<IconButton
-								// 			aria-label="toggle password visibility"
-								// 			onClick={() => setShowPassword((prev) => !prev)}
-								// 			onMouseDown={(e) => e.preventDefault()}
-								// 			edge="end"
-								// 		>
-								// 			{showPassword ? <EyeOff /> : <Eye />}
-								// 		</IconButton>
-								// 	</InputAdornment>
-								// }
 							/>
 						</FormControl>
 					</div>
@@ -146,7 +132,7 @@ const Signin = () => {
 						display: "flex",
 						flexDirection: "column",
 						borderRadius: 16,
-						border: "3px solid blue", 
+						border: "3px solid blue",
 						padding: "1.5% 3%",
 						gap: "20px",
 					}}
@@ -165,18 +151,6 @@ const Signin = () => {
 								label="Password"
 								type="password"
 								onChange={(e) => setPassword(e.target.value)}
-								// endAdornment={
-								// 	<InputAdornment position="end">
-								// 		<IconButton
-								// 			aria-label="toggle password visibility"
-								// 			onClick={() => setShowPassword((prev) => !prev)}
-								// 			onMouseDown={(e) => e.preventDefault()}
-								// 			edge="end"
-								// 		>
-								// 			{showPassword ? <EyeOff /> : <Eye />}
-								// 		</IconButton>
-								// 	</InputAdornment>
-								// }
 							/>
 						</FormControl>
 					</div>
@@ -194,48 +168,76 @@ const Signin = () => {
 				style={{
 					display: "flex",
 					flexDirection: "row",
-					paddingHorizontal: "30%",
-					alignItems: "center",
-					gap: "10%",
+					gap: "100px",
+					justifyContent: "center",
 				}}
 			>
 				<div
 					style={{
 						display: "flex",
-						flexDirection: "row",
+						flexDirection: "column",
+						paddingHorizontal: "30%",
 						alignItems: "center",
-						gap: "1%",
+						gap: "10%",
+						borderRadius: 16,
+						border: "3px solid blue",
+						padding: "1.5% 3%",
 					}}
 				>
-					<h4 style={{whiteSpace: "nowrap"}}>Redirect signin:</h4> <GoogleButton onClick={handleGoogleRedirectSignIn} />
+					<div
+						style={{
+							display: "flex",
+							flexDirection: "row",
+							alignItems: "center",
+							gap: "1%",
+						}}
+					>
+						<h4 style={{ whiteSpace: "nowrap" }}>Redirect signin:</h4>{" "}
+						<GoogleButton onClick={handleGoogleRedirectSignIn} />
+					</div>
+					<div
+						style={{
+							display: "flex",
+							flexDirection: "row",
+							alignItems: "center",
+							gap: "1%",
+						}}
+					>
+						<h4 style={{ whiteSpace: "nowrap" }}>Popup Signin:</h4>{" "}
+						<GoogleButton onClick={handleGooglePopupSignIn} />
+					</div>
 				</div>
-				<div
-					style={{
-						display: "flex",
-						flexDirection: "row",
-						alignItems: "center",
-						gap: "1%",
-					}}
-				>
-					<h4 style={{whiteSpace: "nowrap"}}>Popup Signin:</h4> <GoogleButton onClick={handleGooglePopupSignIn} />
-				</div>
-			</div>
-			<div
-				style={{
-					display: "flex",
-					flexDirection: "row",
-					padding: "3%",
-					alignItems: "center",
-					gap: "3%",
-				}}
-			>
-				<Button variant="contained" onClick={handleFacebookRedirectSignIn}>
-					FacbBook Redirect Signin
-				</Button>
 
-				<Button variant="contained" onClick={handleFacebookPopupSignIn}>
-					FacbBook Popup Signin
-				</Button>
+				<div className="facebook">
+					<div
+						style={{
+							display: "flex",
+							flexDirection: "column",
+							padding: "3%",
+							alignItems: "center",
+							gap: "3%",
+							borderRadius: 16,
+							border: "3px solid blue",
+							padding: "1.5% 3%",
+						}}
+					>
+						<div style={{ display: "flex", flexDirection: "row" }}>
+							FB Redirect Signin
+							<Button
+								variant="contained"
+								onClick={handleFacebookRedirectSignIn}
+							>
+								FaceBook Redirect Signin
+							</Button>
+						</div>
+						<div style={{ display: "flex", flexDirection: "row" }}>
+							FB Popup Signin
+							<Button variant="contained" onClick={handleFacebookPopupSignIn}>
+								FaceBook Popup Signin
+							</Button>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	);

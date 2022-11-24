@@ -8,6 +8,7 @@ import SignedInOnly from "./components/SignedInOnly";
 import Navbar from "./components/Navbar";
 import Chat from "./pages/Chat";
 import Lecture from "./pages/lecture";
+import Storage from "./pages/storage";
 
 function App() {
 	document.title = "3330 Firebase Showcase";
@@ -32,6 +33,14 @@ function App() {
 						element={
 							<SignedInOnly>
 								<Chat />
+							</SignedInOnly>
+						}
+					/>
+					<Route
+						path="/storage"
+						element={
+							<SignedInOnly>
+								<Storage />
 							</SignedInOnly>
 						}
 					/>
