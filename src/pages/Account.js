@@ -121,17 +121,26 @@ const Account = () => {
 							p: 4,
 						}}
 					>
-						<Typography id="transition-modal-title" variant="h6" component="h2">
-							Enter Your New Display/User Name
+						<Typography id="transition-modal-title" variant="h6" component="h2" style={{textAlign: "center", marginBottom: 12}}>
+							<b>Enter Your New Display/User Name</b>
 						</Typography>
-						<TextField
-							onChange={(e) => {
-								setNewUsername(e.target.value);
+						<div
+							style={{
+								display: "flex",
+								flexDirection: "row",
+								justifyContent: "space-between",
 							}}
-						></TextField>
-						<button onClick={updateUserName} className="border py-2 px-5 mt-10">
-							Confirm
-						</button>
+						>
+							<TextField
+								placeholder="New Name"
+								onChange={(e) => {
+									setNewUsername(e.target.value);
+								}}
+							></TextField>
+							<button onClick={updateUserName} className="border py-2 px-5 mt-10">
+								Confirm
+							</button>
+						</div>
 					</Box>
 				</Fade>
 			</Modal>
@@ -153,20 +162,27 @@ const Account = () => {
 							top: "50%",
 							left: "50%",
 							transform: "translate(-50%, -50%)",
-							width: 400,
+							width: 600,
 							bgcolor: "background.paper",
 							border: "2px solid #000",
 							boxShadow: 24,
 							p: 4,
 						}}
 					>
-						<Typography id="transition-modal-title" variant="h6" component="h2">
-							Upload Your New Profile Picture
+						<Typography id="transition-modal-title" variant="h6" component="h2" style={{textAlign: "center", marginBottom: 12}}>
+							<b>Upload Your New Profile Picture</b>
 						</Typography>
-						<input type="file" onChange={handleImageChange} accept="image/*" />
-						<button onClick={handleSubmit} className="border py-2 px-5 mt-10">
-							Confirm
-						</button>
+						<div
+							style={{
+								display: "flex",
+								flexDirection: "row",
+							}}
+						>
+							<input type="file" onChange={handleImageChange} accept="image/*" />
+							<button onClick={handleSubmit} className="border py-2 px-5 mt-10">
+								Confirm
+							</button>
+						</div>
 					</Box>
 				</Fade>
 			</Modal>
@@ -192,6 +208,8 @@ const Account = () => {
 							width: 100,
 							height: 100,
 							borderRadius: "50%",
+							objectFit: "cover",
+							marginBottom: 12,
 						}}
 					/>
 					<button onClick={handleOpenProfilePic}>Change Profile Picture</button>
@@ -204,7 +222,7 @@ const Account = () => {
 					Email: <b>{user?.email}</b>
 				</p>
 				<p>
-					Photo: <b>{user?.photoURL}</b>
+					Photo: <b>{user?.photoURL ?? "No Photo Uploaded"}</b>
 				</p>
 				<p>
 					Sign-In Provider:{" "}

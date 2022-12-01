@@ -204,7 +204,17 @@ function Storage() {
 									Delete
 								</button>
 							</div>
-						))}
+					))}
+
+					{(!allLinks || allLinks.length === 0) &&(
+						<h4
+							style={{
+								padding: "1% 3%",
+							}}
+						>
+							No item uploaded yet.
+						</h4>
+					)}
 				</div>
 			) : (
 				<a>Storage Access is only allowed for Authenticated User</a>
