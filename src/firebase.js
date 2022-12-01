@@ -7,6 +7,7 @@ import { getStorage } from "firebase/storage";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+// REPLACE WITH YOUR FIREBASE PROJECT CREDNETIALS HERE!
 const firebaseConfig = {
 	apiKey: "AIzaSyBPbfVpHHRf1vBop8JypZrwo4giIFl_XA8",
 	authDomain: "groupasm-55c85.firebaseapp.com",
