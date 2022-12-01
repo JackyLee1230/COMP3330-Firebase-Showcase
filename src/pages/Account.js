@@ -68,7 +68,9 @@ const Account = () => {
 	const handleSubmit = () => {
 		const imageRef = ref(
 			storage,
-			`profile/${auth.currentUser.uid}.${img.name.split(".")[1]}`
+			`profile/${auth.currentUser.uid}/${new Date().toISOString()}.${
+				img.name.split(".")[1]
+			}`
 		);
 		uploadBytes(imageRef, img)
 			.then(() => {
