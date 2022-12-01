@@ -10,16 +10,32 @@ import {
 	Typography,
 	TextField,
 } from "@mui/material";
-import { auth } from "../firebase";
+import {
+	ref,
+	uploadBytesResumable,
+	getDownloadURL,
+	listAll,
+	list,
+	deleteObject,
+	updateMetadata,
+	getMetadata,
+	uploadBytes,
+} from "firebase/storage";
+import { auth, storage } from "../firebase";
 import { updateProfile } from "firebase/auth";
 
 const Account = () => {
 	const { logOut, user } = UserAuth();
 	const navigate = useNavigate();
 	const [open, setOpen] = React.useState(false);
+	const [openProfilePic, setOpenProfilePic] = React.useState("");
+	const [img, setImg] = React.useState("");
+	const [url, setUrl] = React.useState("");
 	const [newUsername, setNewUsername] = React.useState("");
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
+	const handleOpenProfilePic = () => setOpenProfilePic(true);
+	const handleCloseProfilePic = () => setOpenProfilePic(false);
 
 	const handleSignOut = async () => {
 		try {
@@ -43,8 +59,41 @@ const Account = () => {
 		}
 	};
 
+	const handleImageChange = (e) => {
+		if (e.target.files[0]) {
+			setImg(e.target.files[0]);
+		}
+	};
+
+	const handleSubmit = () => {
+		const imageRef = ref(
+			storage,
+			`profile/${auth.currentUser.uid}.${img.name.split(".")[1]}`
+		);
+		uploadBytes(imageRef, img)
+			.then(() => {
+				getDownloadURL(imageRef)
+					.then((url) => {
+						setUrl(url);
+						handleCloseProfilePic();
+						// set user profile pic as the url
+						updateProfile(auth.currentUser, {
+							photoURL: url,
+						});
+						window.location.reload(false);
+					})
+					.catch((error) => {
+						console.log(error.message, "error getting the image url");
+					});
+				setImg(null);
+			})
+			.catch((error) => {
+				console.log(error.message);
+			});
+	};
+
 	return (
-		<div style={{ width: "100vw", display: "flex", flexDirection: "column"}}>
+		<div style={{ width: "100vw", display: "flex", flexDirection: "column" }}>
 			<Modal
 				aria-labelledby="transition-modal-title"
 				aria-describedby="transition-modal-description"
@@ -84,27 +133,95 @@ const Account = () => {
 					</Box>
 				</Fade>
 			</Modal>
+			<Modal
+				aria-labelledby="transition-modal-title"
+				aria-describedby="transition-modal-description"
+				open={openProfilePic}
+				onClose={handleCloseProfilePic}
+				closeAfterTransition
+				BackdropComponent={Backdrop}
+				BackdropProps={{
+					timeout: 500,
+				}}
+			>
+				<Fade in={openProfilePic}>
+					<Box
+						sx={{
+							position: "absolute",
+							top: "50%",
+							left: "50%",
+							transform: "translate(-50%, -50%)",
+							width: 400,
+							bgcolor: "background.paper",
+							border: "2px solid #000",
+							boxShadow: 24,
+							p: 4,
+						}}
+					>
+						<Typography id="transition-modal-title" variant="h6" component="h2">
+							Upload Your New Profile Picture
+						</Typography>
+						<input type="file" onChange={handleImageChange} accept="image/*" />
+						<button onClick={handleSubmit} className="border py-2 px-5 mt-10">
+							Confirm
+						</button>
+					</Box>
+				</Fade>
+			</Modal>
 			<h1>Account</h1>
 			<div style={{ color: "black", fontSize: 20, marginBottom: 48 }}>
-				<p>Welcome, <b>{user?.displayName}</b></p>
-				<p>Email: <b>{user?.email}</b></p>
-				<p>Photo: <b>{user?.photoURL}</b></p>
+				<div
+					style={{
+						margin: "auto",
+						width: "fit-content",
+						display: "flex",
+						flexDirection: "column",
+						alignItems: "center",
+					}}
+				>
+					<img
+						src={
+							user.photoURL
+								? user.photoURL
+								: "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png"
+						}
+						alt="profile"
+						style={{
+							width: 100,
+							height: 100,
+							borderRadius: "50%",
+						}}
+					/>
+					<button onClick={handleOpenProfilePic}>Change Profile Picture</button>
+				</div>
+
+				<p>
+					Welcome, <b>{user?.displayName}</b>
+				</p>
+				<p>
+					Email: <b>{user?.email}</b>
+				</p>
+				<p>
+					Photo: <b>{user?.photoURL}</b>
+				</p>
 				<p>
 					Sign-In Provider:{" "}
-					<b>{(user &&
-						user?.providerData &&
-						user?.providerData[0] &&
-						user?.providerData[0]?.providerId) ??
-						0}
+					<b>
+						{(user &&
+							user?.providerData &&
+							user?.providerData[0] &&
+							user?.providerData[0]?.providerId) ??
+							0}
 					</b>
 				</p>
 				<p>
 					Provider-specific UID:{" "}
-					<b>{(user &&
-						user?.providerData &&
-						user?.providerData[0] &&
-						user?.providerData[0]?.uid) ??
-						0}
+					<b>
+						{(user &&
+							user?.providerData &&
+							user?.providerData[0] &&
+							user?.providerData[0]?.uid) ??
+							0}
 					</b>
 				</p>
 			</div>
