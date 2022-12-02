@@ -187,7 +187,7 @@ function Storage() {
 										{link.name.replace("web/", "")} [Uploaded By{" "}
 										{link.displayName}]:
 									</b>
-									<a href={link}>{link.url}</a>
+									<a href={link.url}>{link.url}</a>
 								</div>
 
 								<button
@@ -204,9 +204,9 @@ function Storage() {
 									Delete
 								</button>
 							</div>
-					))}
+						))}
 
-					{(!allLinks || allLinks.length === 0) &&(
+					{(!allLinks || allLinks.length === 0) && (
 						<h4
 							style={{
 								padding: "1% 3%",
