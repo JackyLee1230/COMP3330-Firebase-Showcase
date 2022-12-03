@@ -23,11 +23,10 @@ function Lecture() {
 	const [results, setResults] = useState([]);
 
 	const loadLectures = async () => {
-		// query where ID or Title contains keyword , no need to be exact
 		const q = query(
 			collection(db, "COMP3330"),
-			where("Topic", "==", keyword),
-			limit(1)
+			where("Topic", ">=", keyword),
+			where("Topic", "<=", keyword + "\uf8ff")
 		);
 		const querySnapshot = await getDocs(q);
 		const lectures = [];
